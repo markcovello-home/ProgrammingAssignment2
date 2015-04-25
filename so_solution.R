@@ -1,15 +1,10 @@
-## {assignment root)/source/cachematrix.R code to read/write a matrix from cache
+## {assignment root)/source/so_solution.R code to read/write a matrix from cache
 ##  Not sure I get most of this, but what is sure is we must:
 ##  1. Test to see if the matrix is in the solve cache
 ##  2. if matrix is not in cache, calculate inverse and cache it
 ##  3. If the matrix is in cache then just return it
-## two functions accomplish this makeCacheMatrix() makes a, "special," matrix 
-## that chacheSolve() can use to either calculate or extract from cache 
-## the inverse of the matrix that was the argument originally passed to makeCacheMatrix()
 
-## makeCacheMatrix() takes an invertible matrix and returns a, "special matrix," 
-## (in fact it's  a list and it looks a lot like a list of instructions)
-## that chacheSolve()  can use to return the inverse of the matrix
+
 makeCacheMatrix <- function(x = matrix()) { 
   ## initialize the value of the inverse to NULL,
   ## matrixinverse is the token to identify the inverse (solution) in this function
@@ -33,10 +28,8 @@ makeCacheMatrix <- function(x = matrix()) {
        getinverse = getinverse)
 }
 
-## chacheSolve() takes the special matrix from makeCacheMatrix() and returns either the 
-## previously calculated cached inverse of the original input matrix 
-## or calculates its inverse directly
-
+# This function actually choose the source for th inverse and assigns it
+# its parameter, x, will use the x from the cache if it's there
 cacheSolve<- function(x, ...) {  
  ## load the cache into matrixinverse             
   matrixinverse <- x$getinverse()
